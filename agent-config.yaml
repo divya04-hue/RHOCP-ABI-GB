@@ -1,0 +1,148 @@
+#cat > agent-config.yaml << EOF
+apiVersion: v1beta1
+kind: AgentConfig
+metadata:
+  name: testgb
+rendezvousIP: 10.25.58.151
+hosts: 
+  - hostname: gbocpcontrol01
+    interfaces:
+      - name: ens33
+        macAddress: 00:50:56:89:c0:bf
+    rootDeviceHints: 
+      deviceName: /dev/sdb
+    networkConfig: 
+      interfaces:
+        - name: ens33
+          type: ethernet
+          state: up
+          mac-address: 00:50:56:89:c0:bf
+          ipv4:
+            enabled: true
+            address:
+              - ip: 10.25.58.151
+                prefix-length: 24
+            dhcp: false
+      dns-resolver:
+        config:
+          server:
+            - 10.25.60.103
+      routes:
+        config:
+          - destination: 0.0.0.0/0
+            next-hop-address: 10.25.58.1
+            next-hop-interface: ens33
+            table-id: 254
+  - hostname: gbocpcontrol02
+    interfaces:
+      - name: ens33
+        macAddress: 00:50:56:89:ba:c7
+    rootDeviceHints: 
+      deviceName: /dev/sdb
+    networkConfig: 
+      interfaces:
+        - name: ens33
+          type: ethernet
+          state: up
+          mac-address: 00:50:56:89:ba:c7
+          ipv4:
+            enabled: true
+            address:
+              - ip: 10.25.58.152
+                prefix-length: 24
+            dhcp: false
+      dns-resolver:
+        config:
+          server:
+            - 10.25.60.103
+      routes:
+        config:
+          - destination: 0.0.0.0/0
+            next-hop-address: 10.25.58.1
+            next-hop-interface: ens33
+            table-id: 254
+  - hostname: gbocpcontrol03
+    interfaces:
+      - name: ens33
+        macAddress: 00:50:56:89:07:5d
+    rootDeviceHints: 
+      deviceName: /dev/sdb
+    networkConfig: 
+      interfaces:
+        - name: ens33
+          type: ethernet
+          state: up
+          mac-address: 00:50:56:89:07:5d
+          ipv4:
+            enabled: true
+            address:
+              - ip: 10.25.58.153
+                prefix-length: 24
+            dhcp: false
+      dns-resolver:
+        config:
+          server:
+            - 10.25.60.103
+      routes:
+        config:
+          - destination: 0.0.0.0/0
+            next-hop-address: 10.25.58.1
+            next-hop-interface: ens33
+            table-id: 254
+  - hostname: gbocpworker01
+    interfaces:
+      - name: ens33
+        macAddress: 00:50:56:89:59:00
+    rootDeviceHints: 
+      deviceName: /dev/sdb
+    networkConfig: 
+      interfaces:
+        - name: ens33
+          type: ethernet
+          state: up
+          mac-address: 00:50:56:89:59:00
+          ipv4:
+            enabled: true
+            address:
+              - ip: 10.25.58.154
+                prefix-length: 24
+            dhcp: false
+      dns-resolver:
+        config:
+          server:
+            - 10.25.60.103
+      routes:
+        config:
+          - destination: 0.0.0.0/0
+            next-hop-address: 10.25.58.1
+            next-hop-interface: ens33
+            table-id: 254
+  - hostname: gbocpworker02
+    interfaces:
+      - name: ens33
+        macAddress: 00:50:56:89:62:77
+    rootDeviceHints: 
+      deviceName: /dev/sdb
+    networkConfig: 
+      interfaces:
+        - name: ens33
+          type: ethernet
+          state: up
+          mac-address: 00:50:56:89:62:77
+          ipv4:
+            enabled: true
+            address:
+              - ip: 10.25.58.155
+                prefix-length: 24
+            dhcp: false
+      dns-resolver:
+        config:
+          server:
+            - 10.25.60.103
+      routes:
+        config:
+          - destination: 0.0.0.0/0
+            next-hop-address: 10.25.58.1
+            next-hop-interface: ens33
+            table-id: 254
+ 
