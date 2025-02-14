@@ -1,0 +1,55 @@
+apiVersion: agent-install.openshift.io/v1beta1
+kind: NMStateConfig
+metadata:
+  name: bonded-network
+  namespace: assisted-installer
+spec:
+  config:
+    interfaces:
+      - name: bond0
+        type: bond
+        state: up
+        ipv4:
+          enabled: true
+          address:
+            - ip: 10.32.1.64
+              prefix-length: 24
+          dhcp: false
+        link-aggregation:
+          mode: 802.3ad  # LACP mode (change to "active-backup" or another mode if needed)
+          options:
+            miimon: "100"
+            downdelay: "200"
+            updelay: "200"
+        mac-address: "d4:04:e6:af:c7:30"  # Primary MAC Address (one of the bonded interfaces)
+      - name: eth0
+        type: ethernet
+        state: up
+        mac-address: "d4:04:e6:af:c7:30"
+        controller: bond0
+      - name: eth1
+        type: ethernet
+        state: up
+        mac-address: "d4:04:e6:af:c7:31"
+        controller: bond0
+      - name: eth2
+        type: ethernet
+        state: up
+        mac-address: "04:32:01:ba:12:80"
+        controller: bond0
+      - name: eth3
+        type: ethernet
+        state: up
+        mac-address: "04:32:01:ba:12:81"
+        controller: bond0
+  interfaces:
+    - name: bond0
+      macAddress: "d4:04:e6:af:c7:30"  # This should match the bond MAC address
+    - name: eth0
+      macAddress: "d4:04:e6:af:c7:30"
+    - name: eth1
+      macAddress: "d4:04:e6:af:c7:31"
+    - name: eth2
+      macAddress: "04:32:01:ba:12:80"
+    - name: eth3
+      macAddress: "04:32:01:ba:12:81"
